@@ -1,0 +1,10 @@
+version: '2.1'
+
+services:
+  eyeball_remote:
+    image: eyeball_remote
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+        - 18816:18816
