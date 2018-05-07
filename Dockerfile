@@ -10,10 +10,12 @@ FROM python:alpine
 #FROM continuumio/miniconda3
 
 LABEL Name=eyeball_remote Version=0.0.1
-EXPOSE 18816
+EXPOSE 18861
 
 WORKDIR /app
 ADD . /app
+
+VOLUME ["/app/data","/app/databases"]
 
 # Using pip:
 RUN python3 -m pip install -r requirements.txt
