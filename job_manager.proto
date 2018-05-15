@@ -9,8 +9,10 @@ message BoolOut {
     bool boolOut=1;
 }
 
+message JobName {
+    string jobName=1;
+}
+
 message Job {
-    enum JobObj {
-        
-    }
+    map<string,string> job=1;
 }
