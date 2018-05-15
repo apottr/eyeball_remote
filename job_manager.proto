@@ -1,0 +1,16 @@
+service Server {
+    rpc CheckCron () returns (BoolOut) {}
+    rpc AddJob (Job) returns (BoolOut) {}
+    rpc DelJob (JobName) returns (BoolOut) {}
+    rpc PauseJob (JobName) returns (BoolOut) {}
+}
+
+message BoolOut {
+    bool boolOut=1;
+}
+
+message Job {
+    enum JobObj {
+        
+    }
+}
