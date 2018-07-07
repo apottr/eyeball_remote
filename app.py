@@ -1,11 +1,16 @@
-from es_ops import get_jobs,
-from crontab import Cron
+from es_ops import get_sources_for_region
+from crontab import CronTab
 
-cron = Cron(user=True)
+cron = CronTab(user=True)
 
 def add_job_to_cron(job):
+    pass
 
+def checker(region):
+    for item in get_sources_for_region(region):
+        if len(list(cron.find_command(item["cmd"]))) == 0:
+            print(item)
+            
 
-def checker():
-    for item in cron:
-        
+if __name__ == "__main__":
+    print(get_sources_for_region("bluesteel"))

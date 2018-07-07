@@ -19,17 +19,40 @@ def get_x(r,field):
     j = r.json()
     o = []
     for item in j["hits"]["hits"]:
-        o.append({"id": item["_id"], field: item["_source"][field]})
+        obj = {"id": item["_id"]}
+        if isinstance(field,list):
+            for fi in field:
+                obj[fi] = item["_source"][fi]
+        else:
+            obj[field] = item["_source"][field]
+        o.append(obj)
     return o
 
+def get_sources_for_region(region):
+    r = requests.get(esurl("/sources/_search"),headers={
+        "Content-Type": "application/json"
+    },data=json.dumps({
+        "query": {
+            "bool": {
+                "must": [
+                    { "term": {"region": region} }
+                ]
+            }
+        }
+    }))
+    return get_x(r,"cmd")
+
 def get_jobs():
-    r = requests.get(esurl("/jobs/_search"))
-    return get_x(r,"name")
+    r = requests.get(esurl("/jobs/_search"),headers={
+        "Content-Type": "application/json"
+    })
+    return get_x(r,["name","sources"])
 
 def get_sources():
-    r = requests.get(esurl("/sources/_search"))
+    r = requests.get(esurl("/sources/_search"),headers={
+        "Content-Type": "application/json"
+    })
     return get_x(r,"cmd")
 
 def db_init():
-    for idx in ["jobs","sources"]:
-        guarantee_index_exists(idx)
+    guarantee_index_exists("config")
