@@ -15,6 +15,11 @@ def guarantee_index_exists(idx):
     if "error" in d:
         requests.put(esurl(f"/{idx}"))
 
+def create_obj(p,obj):
+    r = requests.post(esurl(p),data=json.dumps(obj),headers={"Content-Type":"application/json"})
+    print(r.json())
+    return r
+
 def get_x(r,field):
     j = r.json()
     o = []
@@ -40,7 +45,7 @@ def get_sources_for_region(region):
             }
         }
     }))
-    return get_x(r,"cmd")
+    return get_x(r,["cmd","schedule"])
 
 def get_jobs():
     r = requests.get(esurl("/jobs/_search"),headers={
@@ -52,7 +57,11 @@ def get_sources():
     r = requests.get(esurl("/sources/_search"),headers={
         "Content-Type": "application/json"
     })
-    return get_x(r,"cmd")
+    return get_x(r,["cmd","schedule"])
+
+def create_data(obj):
+    create_obj("/data/object",obj)
 
 def db_init():
-    guarantee_index_exists("config")
+    for x in ["sources","jobs","data"]:
+        guarantee_index_exists(x)
