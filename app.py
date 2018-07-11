@@ -30,4 +30,5 @@ def checker(region):
 
 
 if __name__ == "__main__":
-    checker("bluesteel")
+    hn = os.environ["OBJ_HOSTNAME"]
+    checker(hn)

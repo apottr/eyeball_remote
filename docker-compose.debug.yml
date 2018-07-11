@@ -1,0 +1,10 @@
+version: '2.1'
+
+services:
+  eyeball_remote_rewrite:
+    image: eyeball_remote_rewrite
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+        - 3000:3000
