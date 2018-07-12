@@ -1,4 +1,4 @@
-import requests,os,json
+import requests,os,json,sys
 
 if "ES_SERVICE_SERVICE_HOST" in os.environ:
     ESHOST = os.environ["ES_SERVICE_SERVICE_HOST"]
@@ -65,3 +65,6 @@ def create_data(obj):
 def db_init():
     for x in ["sources","jobs","data"]:
         guarantee_index_exists(x)
+
+if __name__ == "__main__":
+    print(get_sources_for_region(sys.argv[1]))

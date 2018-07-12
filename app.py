@@ -7,7 +7,7 @@ directory = Path(__file__).parent.parent.resolve() #pylint: disable=no-member
 if "VIRTUAL_ENV" in os.environ:
     pybin = directory / "bin" / "python"
 else:
-    pybin = "/usr/bin/python"
+    pybin = "python"
 
 cron = CronTab(user=True)
 
