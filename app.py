@@ -1,7 +1,7 @@
 from es_ops import get_sources_for_region
 from crontab import CronTab
 from pathlib import Path
-import os
+import os,time
 
 directory = Path(__file__).parent.parent.resolve() #pylint: disable=no-member
 if "VIRTUAL_ENV" in os.environ:
@@ -31,4 +31,6 @@ def checker(region):
 
 if __name__ == "__main__":
     hn = os.environ["HOSTNAME"]
-    checker(hn)
+    while True:
+        checker(hn)
+        time.sleep(60000)
