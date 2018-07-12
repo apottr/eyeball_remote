@@ -4,7 +4,7 @@
 # OS Support also exists for jessie & stretch (slim and full).
 # See https://hub.docker.com/r/library/python/ for all supported Python
 # tags from Docker Hub.
-FROM python:alpine
+FROM python:alpine3.7
 
 # If you prefer miniconda:
 #FROM continuumio/miniconda3
@@ -14,7 +14,7 @@ LABEL Name=eyeball_remote_rewrite Version=0.0.1
 WORKDIR /app
 ADD . /app
 
-RUN apk add curl
+RUN apk --no-cache add curl
 
 # Using pip:
 RUN python3 -m pip install -r requirements.txt
