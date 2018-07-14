@@ -14,7 +14,7 @@ LABEL Name=eyeball_remote_rewrite Version=0.0.1
 WORKDIR /app
 ADD . /app
 
-RUN apk --no-cache add curl
+RUN apk add curl
 
 # Using pip:
 RUN python3 -m pip install -r requirements.txt
