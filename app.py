@@ -36,6 +36,6 @@ def checker(region):
 if __name__ == "__main__":
     hn = os.environ["HOSTNAME"]
     while True:
-        print("running at ",asctime(gmtime))
+        print("running at",asctime(gmtime()))
         checker(hn)
         sleep(60)
