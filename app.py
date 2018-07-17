@@ -13,7 +13,8 @@ cron = CronTab(user=True)
 
 def add_job_to_cron(obj):
     schedule,cmd,id = obj["schedule"],obj["cmd"],obj["id"]
-    command = f"{cmd} | {pybin} {directory}/processor.py {id}"
+    proc = directory / "processor.py"
+    command = f"{cmd} | {pybin} {str(proc)} {id}"
     j = cron.new(command=command,comment=id)
     j.setall(schedule)
 

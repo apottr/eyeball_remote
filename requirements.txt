@@ -6,7 +6,7 @@ isort==4.3.4
 lazy-object-proxy==1.3.1
 mccabe==0.6.1
 pylint==1.9.2
-python-crontab==2.3.4
+git+https://gitlab.com/doctormo/python-crontab.git#egg=python-crontab
 python-dateutil==2.7.3
 requests==2.19.0
 six==1.11.0
