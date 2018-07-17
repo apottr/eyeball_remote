@@ -19,7 +19,7 @@ RUN apk add curl
 
 # Using pip:
 RUN python3 -m pip install -r requirements.txt
-CMD ["cron","&&","python3", "app.py"]
+CMD ["crond","&&","python3", "app.py"]
 
 # Using pipenv:
 #RUN python3 -m pip install pipenv
