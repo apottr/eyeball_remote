@@ -14,6 +14,7 @@ LABEL Name=eyeball_remote_rewrite Version=0.0.1
 WORKDIR /app
 ADD . /app
 
+RUN apk add git
 RUN apk add curl
 
 # Using pip:
