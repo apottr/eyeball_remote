@@ -14,13 +14,11 @@ LABEL Name=eyeball_remote_rewrite Version=0.0.1
 WORKDIR /app
 ADD . /app
 
-RUN apk add git
 RUN apk add curl
 
 # Using pip:
 RUN python3 -m pip install -r requirements.txt
-RUN crond
-CMD ["python3", "app.py"]
+CMD "sh -c ${CMD} | processor.py ${ID}"
 
 # Using pipenv:
 #RUN python3 -m pip install pipenv
