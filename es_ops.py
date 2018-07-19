@@ -33,6 +33,13 @@ def get_x(r,field):
         o.append(obj)
     return o
 
+def get_y(r):
+    j = r.json()
+    if j["found"]:
+        return j["_source"]
+    else:
+        return {}
+
 def get_sources_for_region(region):
     r = requests.get(esurl("/sources/_search"),headers={
         "Content-Type": "application/json"
@@ -58,6 +65,10 @@ def get_sources():
         "Content-Type": "application/json"
     })
     return get_x(r,["cmd","schedule"])
+
+def get_source(id):
+    r = requests.get(esurl(f"/sources/source/{id}"))
+    return get_y(r)
 
 def create_data(obj):
     create_obj("/data/object",obj)

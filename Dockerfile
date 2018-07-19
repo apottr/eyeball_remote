@@ -18,7 +18,7 @@ RUN apk add curl
 
 # Using pip:
 RUN python3 -m pip install -r requirements.txt
-CMD "sh -c '${CMD} | processor.py ${ID}'"
+CMD ["python","processor.py"]
 
 # Using pipenv:
 #RUN python3 -m pip install pipenv
